@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is an automatically generated file. -->
+<TitlePage>
+  <Title>
+    QuimpGrp
+  </Title>
+  <Subtitle>
+    A database of QUasiprimitive, IMPrimitive permutation groups.
+  </Subtitle>
+  <Version>
+    0.1
+  </Version>
+  <Author>
+    Dominik Bernhardt<Alt Only="LaTeX"><Br/></Alt>
+<Address>
+Pontdriesch 10-16, 52062 Aachen<Br/>
+</Address>
+<Email>dominik.bernhardt@rwth-aachen.de</Email>
+
+  </Author>
+  <Date>
+    25 November 2021
+  </Date>
+  </TitlePage>
