@@ -111,18 +111,16 @@ BindGlobal("QUIMP_DATA_DIR", DirectoriesPackageLibrary( "QuimpGrp", "lib" )[1]);
 Read(Filename(QUIMP_DATA_DIR,"metadata.g"));
 
 InstallGlobalFunction(NrQuimpGroups, function(deg)
-if deg <5 or deg >4095 then 
-	ErrorNoReturn("Quimp groups are only known for degree between 5 and 4095.");
-elif not deg in QUIMP_DEGREES then 
-	return 0;
-else 
-	if not IsBoundGlobal( Concatenation("QUIMP_", String(deg))) then 
-		Read( Filename( QUIMP_DATA_DIR,Concatenation("QUIMP_", String(deg), ".g" )));
-	fi;
-	return Length( EvalString( Concatenation( "QUIMP_", String(deg) ) ) );
-fi;
-end
-);
+    local pos;
+    if deg <1 or deg >4095 then 
+        ErrorNoReturn("Quimp groups are only known for degree between 1 and 4095.");
+    fi;
+    pos := PositionSet(QUIMP_DEGREES, deg);
+    if pos = fail then
+        return 0;
+    fi;
+    return QUIMP_COUNTS[pos];
+end);
 
 InstallGlobalFunction( AllQuimpGroups, function(arg)
 local deg, deg_list, quimps_with_property, selector, selector_value, i, G_list, data, options;
