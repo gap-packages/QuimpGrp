@@ -65,10 +65,10 @@ DeclareProperty("IsQuasiprimitive", IsPermGroup);
 DeclareProperty("IsQuimp", IsPermGroup);
 
 #! @Arguments G
-#! @Returns String or fail
+#! @Returns String or <K>fail</K>
 #! @Description This function takes as input a permutation group <A>G</A>
 #! and returns the Praeger-ONan-Scott type of the
-#! quasiprimitive permutation group <A>G</A> as a string or fail if <A>G</A> is not
+#! quasiprimitive permutation group <A>G</A> as a string or <K>fail</K> if <A>G</A> is not
 #! quasiprimitive on its moved points.<P/> In her 1993 paper
 #! <Cite Key="Praeger_Quasi"/>, Cheryl Praeger classified the
 #! quasiprimitive permutation groups in a theorem similar to the
@@ -86,10 +86,10 @@ DeclareSynonym( "QuasiprimitiveONanScottType", PraegerONanScottType);
 #! This section describes some functions to access the database of quimp groups.
 
 #! @Arguments deg
-#! @Returns Integer or fail
+#! @Returns Integer or <K>fail</K>
 #! @Description This function returns the number of quimp groups of the
 #! degree equal to <A>deg</A>, if the input is a natural number between 1 and 4095
-#! and fail otherwise
+#! and <K>fail</K> otherwise
 DeclareGlobalFunction("NrQuimpGroups");
 
 #! @Arguments G
@@ -112,21 +112,20 @@ DeclareAttribute( "SocleTypeQuasiprimitiveGroup", IsPermGroup);
 #! <A>arg</A> consists of an arbitrary number of pairs. A group $G$ from
 #! the database passes a pair $[f,\text{val}]$ if $f(G)\in \text{val}$. The function
 #! <Ref Func="AllQuimpGroups"/> returns all groups $G$ from the database of
-#! quimp groups that passs every pair.
+#! quimp groups that pass every pair.
 #! For more information, also see the documentation of
 #! <Ref BookName="Reference" Func="AllLibraryGroups"/>.
 DeclareGlobalFunction( "AllQuimpGroups" );
 
 #! @Arguments arg
 #! @Returns One quimp group
-#! @Description This function calls <Ref Func="AllQuimpGroups" /> with the
-#! input <A>arg</A> and returns the first group in the result of <F>AllQuimpGroups</F>(<A>arg</A>).
+#! @Description Returns one group contained in the result of <F>AllQuimpGroups</F>(<A>arg</A>).
 DeclareGlobalFunction("OneQuimpGroup");
 
 #! @Arguments deg, nr
-#! @Returns A permutation group of fail
+#! @Returns A permutation group of <K>fail</K>
 #! @Description Returns the quimp group of degree <A>deg</A> and number
-#! <A>nr</A> or fail if no such group exists.
+#! <A>nr</A> or <K>fail</K> if no such group exists.
 DeclareGlobalFunction("QuimpGroup");
 
 DeclareGlobalFunction("QuimpIdentification");
