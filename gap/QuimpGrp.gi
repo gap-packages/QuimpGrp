@@ -107,8 +107,16 @@ end
 );
 
 
-BindGlobal("QUIMP_DATA_DIR", DirectoriesPackageLibrary( "QuimpGrp", "lib" )[1]);
-Read(Filename(QUIMP_DATA_DIR,"metadata.g"));
+ReadPackage("QuimpGrp", "lib/metadata.g");
+
+BindGlobal("QUIMP_GROUPS", function(deg)
+    local name;
+    name := Concatenation( "QUIMP_", String(deg) );
+    if not IsBoundGlobal( name ) then
+        ReadPackage( "QuimpGrp", Concatenation( "lib/", name, ".g" ) );
+    fi;
+    return ValueGlobal( name );
+end);
 
 InstallGlobalFunction(NrQuimpGroups, function(deg)
     local pos;
@@ -135,12 +143,7 @@ local deg, deg_list, quimps_with_property, selector, selector_value, i, G_list, 
 	fi;
 	if not NrMovedPoints in options then 
 		Info(InfoQuimpGrp,1, "No degree restriction given, loading all groups.");
-		for deg in QUIMP_DEGREES do 
-			if not IsBoundGlobal( Concatenation("QUIMP_", String(deg) ) ) then 
-				Read( Filename( QUIMP_DATA_DIR,Concatenation("QUIMP_", String(deg), ".g" )));
-			fi;
-		od;	
-	deg_list := QUIMP_DEGREES;
+    	deg_list := QUIMP_DEGREES;
 	else
 		if IsList( options[Position(options, NrMovedPoints) +1] ) then 
 			deg_list := options[ Position( options, NrMovedPoints)+1];
@@ -151,18 +154,11 @@ local deg, deg_list, quimps_with_property, selector, selector_value, i, G_list, 
 		if ForAny( deg_list, deg -> deg<5 or deg >4095) then 
 			ErrorNoReturn("Quimp groups are only available with degree between 5 and 4095.");
 		fi;
-		deg_list := Filtered( deg_list, deg -> deg in QUIMP_DEGREES);
-		for deg in deg_list do 
-			if not IsBoundGlobal( Concatenation("QUIMP_", String(deg) ) ) then 
-				Read( Filename( QUIMP_DATA_DIR,Concatenation("QUIMP_", String(deg), ".g" )));
-			fi;
-		od;
+		deg_list := Intersection( deg_list, QUIMP_DEGREES);
 	fi;
 	quimps_with_property := [];
-	for deg in deg_list do 
-		for G_list in EvalString( Concatenation("QUIMP_", String(deg))) do
-			Add( quimps_with_property, G_list);
-		od;
+	for deg in deg_list do
+	    Append( quimps_with_property, QUIMP_GROUPS(deg) );
 	od;
 	#No more filters to apply, so return all groups with degree in deg_list
 	if Length( options ) = 2 and options[1]=NrMovedPoints  then 
@@ -233,7 +229,7 @@ end
 );
 
 InstallGlobalFunction(QuimpGroup, function( deg, nr)
-	local name, G_list, data;
+	local grps, G_list, data;
 	if not IsInt(deg) or not IsInt(nr) then 
 		ErrorNoReturn("<deg> and <nr> must be integers.");
 	elif deg<5 or deg > 4095 then 
@@ -242,14 +238,11 @@ InstallGlobalFunction(QuimpGroup, function( deg, nr)
 		ErrorNoReturn("There is no quimp group of degree <deg>=", deg, ".");
 	fi;
 	#We can assume there exists a quimp group of degree deg.
-	name := Concatenation("QUIMP_", String(deg));
-	if not IsBoundGlobal(name ) then 
-		Read( Filename( QUIMP_DATA_DIR, Concatenation(name, ".g") ) );
+	grps := QUIMP_GROUPS(deg);
+	if nr > Size( grps ) then 
+		ErrorNoReturn("There are only ", Size( grps ), " quimp groups of degree ", deg, ".");
 	fi;
-	if nr > Size( EvalString(name) ) then 
-		ErrorNoReturn("There are only ", Size( EvalString(name) ), " quimp groups of degree ", deg, ".");
-	fi;
-	G_list := EvalString(name)[nr];
+	G_list := grps[nr];
 	SetPraegerONanScottType( G_list[1], G_list[2]);
 	SetSocle(G_list[1], G_list[3]);
 	data := G_list[5];
