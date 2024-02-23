@@ -30,7 +30,7 @@ Persons := [
 
 SourceRepository := rec(
     Type := "git",
-    URL := "https://github.com/DominikBernhardt/QuimpGrp",
+    URL := "https://github.com/gap-packages/QuimpGrp",
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
 PackageWWWHome  := "https://DominikBernhardt.github.io/QuimpGrp/",
@@ -77,5 +77,3 @@ TestFile := "tst/testall.g",
 #Keywords := [ "TODO" ],
 
 ));
-
-
