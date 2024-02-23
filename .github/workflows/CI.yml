@@ -34,6 +34,7 @@ jobs:
         with:
           GAPBRANCH: ${{ matrix.gap-branch }}
       - uses: gap-actions/build-pkg@v1
+      - run: for f in QUIMP*.tar.bz2 ; do tar xvf $f ; done
       - uses: gap-actions/run-pkg-tests@v2
       - uses: gap-actions/process-coverage@v2
       - uses: codecov/codecov-action@v4
