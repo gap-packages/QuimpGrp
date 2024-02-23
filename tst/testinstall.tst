@@ -28,7 +28,7 @@ gap> SocleTypeQuasiprimitiveGroup(G).width;
 1
 
 #
-gap> ForAll([5..1023], n -> NrQuimpGroups(n) = Length(AllQuimpGroups(NrMovedPoints,n)));
+gap> ForAll([1..1023], n -> NrQuimpGroups(n) = Length(AllQuimpGroups(NrMovedPoints,n)));
 true
 gap> ForAll([1024..2047], n -> NrQuimpGroups(n) = Length(AllQuimpGroups(NrMovedPoints,n)));
 true

@@ -88,7 +88,7 @@ DeclareSynonym( "QuasiprimitiveONanScottType", PraegerONanScottType);
 #! @Arguments deg
 #! @Returns Integer or fail
 #! @Description This function returns the number of quimp groups of the
-#! degree equal to <A>deg</A>, if the input is a natural number between 5 and 4095
+#! degree equal to <A>deg</A>, if the input is a natural number between 1 and 4095
 #! and fail otherwise
 DeclareGlobalFunction("NrQuimpGroups");
 
