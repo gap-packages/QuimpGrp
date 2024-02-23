@@ -9,32 +9,20 @@ InstallMethod( IsQuasiprimitive, "for permutation groups", true,
 	local N, normals, omega;
 	if IsPrimitive(G) then 
 		return true;
-	else 
-		normals := NormalSubgroups( G );
-		omega := MovedPoints(G);
-		for N in normals do
-			if Order( N ) > 1 then
-				if not IsTransitive( N, omega) then
-					return false;
-				fi;
-			fi;
-		od;
-	fi;
-	return true;
+	elif not IsTransitive(G) then
+	    return false;
+	fi; 
+    normals := NormalSubgroups( G );
+    omega := MovedPoints(G);
+    return ForAll(normals, N -> IsTrivial(N) or IsTransitive(N, omega));
 end
 );
 
 
 
-InstallMethod( IsQuimp, "for permutation groups", true,
-	[IsPermGroup], 0, function(G)
-    local n, normals, omega;
-		if IsPrimitive(G) then 
-			return false;
-		else 
-			return IsQuasiprimitive(G);
-		fi;
-end
+InstallMethod( IsQuimp, "for permutation groups",
+	[IsPermGroup],
+	G -> not IsPrimitive(G) and IsQuasiprimitive(G)
 );
 
 
