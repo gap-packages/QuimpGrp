@@ -19,6 +19,8 @@
 /doc/*.toc
 /doc/manual.pdf
 /doc/_*.xml
+/doc/QuimpGrp.xml
+/doc/title.xml
 
 /bin/
 /gen/
