@@ -150,10 +150,10 @@ local deg, deg_list, quimps_with_property, selector, selector_value, i, G_list, 
 		else 
 			deg_list := [options[ Position( options, NrMovedPoints)+1]];
 		fi;
-		#Remove degrees where no quimp group exists
-		if ForAny( deg_list, deg -> deg<5 or deg >4095) then 
-			ErrorNoReturn("Quimp groups are only available with degree between 5 and 4095.");
+		if ForAny( deg_list, deg -> deg<1 or deg >4095) then
+			ErrorNoReturn("Quimp groups are only available with degree between 1 and 4095.");
 		fi;
+		#Remove degrees where no quimp group exists
 		deg_list := Intersection( deg_list, QUIMP_DEGREES);
 	fi;
 	quimps_with_property := [];
@@ -232,8 +232,8 @@ InstallGlobalFunction(QuimpGroup, function( deg, nr)
 	local grps, G_list, data;
 	if not IsInt(deg) or not IsInt(nr) then 
 		ErrorNoReturn("<deg> and <nr> must be integers.");
-	elif deg<5 or deg > 4095 then 
-		ErrorNoReturn("Quimp groups are only available with degree between 5 and 4095.");
+	elif deg<1 or deg > 4095 then
+		ErrorNoReturn("Quimp groups are only available with degree between 1 and 4095.");
 	elif not deg in QUIMP_DEGREES then 
 		ErrorNoReturn("There is no quimp group of degree <deg>=", deg, ".");
 	fi;
