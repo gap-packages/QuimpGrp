@@ -39,7 +39,7 @@ jobs:
       - run: for f in QUIMP*.tar.bz2 ; do tar xvf $f ; done
       - uses: gap-actions/run-pkg-tests@v2
       - uses: gap-actions/process-coverage@v2
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v5
 
   # The documentation job
   manual:
