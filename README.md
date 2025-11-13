@@ -1,3 +1,6 @@
+[![CI](https://github.com/gap-packages/QuimpGrp/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/QuimpGrp/actions/workflows/CI.yml)
+[![Code Coverage](https://codecov.io/gh/gap-packages/QuimpGrp/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/QuimpGrp)
+
 # The GAP package QuimpGrp
 
 This package provides a databse for all <ins>**qu**</ins>asiprimitive, <ins>**imp**</ins>rimitive permutation
