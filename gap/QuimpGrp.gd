@@ -60,7 +60,7 @@ DeclareProperty("IsQuasiprimitive", IsPermGroup);
 #! testing the definition, i.e. if all minimal normal subgroups of <A>G</A>
 #! are
 #! transitive and the group acts imprimitively and returns true in this
-#! case and false otherwise. See also <Ref Prop="IsQuasiprimitive"/>
+#! case and false otherwise. See also <Ref Prop="IsQuasiprimitive" Label="for IsPermGroup"/>
 #! for more details on quasiprimitivity.
 DeclareProperty("IsQuimp", IsPermGroup);
 

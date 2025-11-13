@@ -9,10 +9,14 @@ fi;
 
 AutoDoc( rec(
     scaffold := rec(
-                bib := "QuimpGrp.bib"
-                       ),
+        bib := "QuimpGrp.bib"
+    ),
     autodoc := rec(
-        scan_dirs:=["gap"]
+        scan_dirs := ["gap"]
+    ),
+    gapdoc := rec(
+        LaTeXOptions := rec(
+            LateExtraPreamble := "\\usepackage{amsmath}"
         )
     )
-);
+));
